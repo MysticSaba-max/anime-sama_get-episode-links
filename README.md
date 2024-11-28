@@ -54,3 +54,4 @@ CONCURRENT_DOWNLOADS:
 
 # Contribution
 I am open to contribution.
+THANKS TO https://github.com/Sky-NiniKo/anime-sama_downloader
