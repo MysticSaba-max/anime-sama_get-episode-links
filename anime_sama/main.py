@@ -33,14 +33,21 @@ async def main():
     for episode in selected_episodes:
         episode.languages.prefer_languages = config.PREFER_LANGUAGES
         episode.languages.set_best(config.PLAYERS["prefer"], config.PLAYERS["ban"])
+        
+        # Display available streaming links
+        print(f"\nStreaming links for {colored(episode.name, 'cyan')}:")
+        for lang, players in episode.languages.players.items():
+            print(f"\n{colored(lang.upper(), 'yellow')}:")
+            for link in players.availables:
+                print(f"  • {colored('Link', 'green')}: {link}")
 
-    # print(selected_episodes[0].languages.best)
-    if config.DOWNLOAD:
-        downloader.multi_download(
-            selected_episodes, config.DOWNLOAD_PATH, config.CONCURRENT_DOWNLOADS
-        )
-    else:
-        internal_player.play_episode(selected_episodes[0]).wait()
+    # Comment out the download and player section as we're just showing links
+    # if config.DOWNLOAD:
+    #     downloader.multi_download(
+    #         selected_episodes, config.DOWNLOAD_PATH, config.CONCURRENT_DOWNLOADS
+    #     )
+    # else:
+    #     internal_player.play_episode(selected_episodes[0]).wait()
 
 
 if __name__ == "__main__":
